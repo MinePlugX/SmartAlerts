@@ -1,0 +1,16 @@
+# Hey there!
+# Welcome to the Configuration File, it's uh.. pretty cold in here..!
+
+prefix: '&f[&eAlert&f]'
+incorrect-usage: '&4&l> &cHey! You are doing it wrong. /alert <message>'
+no-permission: '&4&l> &cYou do not have permission!'
+title-prefix: '&c&lAlert'
+chat-message-colour: '&c'
+actionbar-colour: '&e&l'
+subtitle-colour: '&7'
+open-adminmenu-message: '&4&l> &cOpening the Admin Menu..'
+sound-effect: WITHER_DEATH
+chat-alert: true
+sound-feature: false
+title-feature: true
+actionbar-feature: true
