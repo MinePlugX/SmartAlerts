@@ -1,0 +1,120 @@
+package nl.mpx.alert;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+public class AdminGUI implements Listener {
+    public static Inventory inv = Bukkit.createInventory((InventoryHolder)null, 27, "Alert Admin Menu");
+
+    public AdminGUI() {
+    }
+
+    public static void openInv(Player player) {
+        ItemStack chat = new ItemStack(Material.BOOK_AND_QUILL);
+        ItemMeta chatmeta = chat.getItemMeta();
+        chatmeta.setDisplayName(ChatColor.GREEN + "Chat Alert Feature");
+        List chatlore = new ArrayList();
+        chatlore.add("");
+        chatlore.add(ChatColor.GRAY + "Disable/Enable the Chat Alert");
+        chatlore.add(ChatColor.GRAY + "feature!");
+        chatmeta.setLore(chatlore);
+        chat.setItemMeta(chatmeta);
+        ItemStack sound = new ItemStack(Material.NOTE_BLOCK);
+        ItemMeta soundmeta = sound.getItemMeta();
+        soundmeta.setDisplayName(ChatColor.GREEN + "Sound Feature");
+        List soundlore = new ArrayList();
+        soundlore.add("");
+        soundlore.add(ChatColor.GRAY + "Disable/Enable the Sound Alert");
+        soundlore.add(ChatColor.GRAY + "feature!");
+        soundmeta.setLore(soundlore);
+        sound.setItemMeta(soundmeta);
+        ItemStack title = new ItemStack(Material.SLIME_BALL);
+        ItemMeta titlemeta = title.getItemMeta();
+        titlemeta.setDisplayName(ChatColor.GREEN + "Title Feature");
+        List titlelore = new ArrayList();
+        titlelore.add("");
+        titlelore.add(ChatColor.GRAY + "Disable/Enable the Title Alert");
+        titlelore.add(ChatColor.GRAY + "feature!");
+        titlemeta.setLore(titlelore);
+        title.setItemMeta(titlemeta);
+        ItemStack action = new ItemStack(Material.BARRIER);
+        ItemMeta actionmeta = action.getItemMeta();
+        actionmeta.setDisplayName(ChatColor.GREEN + "ActionBar Feature");
+        List actionlore = new ArrayList();
+        actionlore.add("");
+        actionlore.add(ChatColor.GRAY + "Disable/Enable the ActionBar Alert");
+        actionlore.add(ChatColor.GRAY + "feature!");
+        actionmeta.setLore(actionlore);
+        action.setItemMeta(actionmeta);
+        inv.setItem(11, chat);
+        inv.setItem(12, sound);
+        inv.setItem(14, title);
+        inv.setItem(15, action);
+        player.openInventory(inv);
+    }
+
+    @EventHandler
+    public void onInvClick(InventoryClickEvent e) {
+        Player p = (Player)e.getWhoClicked();
+        if (e.getInventory().equals(inv)) {
+            if (e.getCurrentItem().getType() == Material.BOOK_AND_QUILL && Alert.getMech().getConfig().getBoolean("chat-alert")) {
+                Alert.getMech().getConfig().set("chat-alert", false);
+                Alert.getMech().saveConfig();
+                p.sendMessage(ChatColor.RED + "▶ " + ChatColor.GRAY + "Set the chat-alert feature to" + ChatColor.RED + " FALSE");
+                e.setCancelled(true);
+                return;
+            }
+
+            if (!Alert.getMech().getConfig().getBoolean("chat-alert")) {
+                Alert.getMech().getConfig().set("chat-alert", true);
+                Alert.getMech().saveConfig();
+                p.sendMessage(ChatColor.GREEN + "▶ " + ChatColor.GRAY + "Set the chat-alert feature to" + ChatColor.GREEN + " TRUE");
+                e.setCancelled(true);
+                return;
+            }
+        }
+
+        if (e.getCurrentItem().getType() == Material.NOTE_BLOCK && Alert.getMech().getConfig().getBoolean("sound-feature")) {
+            Alert.getMech().getConfig().set("sound-feature", false);
+            Alert.getMech().saveConfig();
+            p.sendMessage(ChatColor.RED + "▶ " + ChatColor.GRAY + "Set the sound feature to" + ChatColor.RED + " FALSE");
+            e.setCancelled(true);
+        } else if (!Alert.getMech().getConfig().getBoolean("sound-feature")) {
+            Alert.getMech().getConfig().set("sound-feature", true);
+            Alert.getMech().saveConfig();
+            p.sendMessage(ChatColor.GREEN + "▶ " + ChatColor.GRAY + "Set the sound feature to" + ChatColor.GREEN + " TRUE");
+            e.setCancelled(true);
+        } else if (e.getCurrentItem().getType() == Material.SLIME_BALL && Alert.getMech().getConfig().getBoolean("title-feature")) {
+            Alert.getMech().getConfig().set("title-feature", false);
+            Alert.getMech().saveConfig();
+            p.sendMessage(ChatColor.RED + "▶ " + ChatColor.GRAY + "Set the title feature to" + ChatColor.RED + " FALSE");
+            e.setCancelled(true);
+        } else if (!Alert.getMech().getConfig().getBoolean("title-feature")) {
+            Alert.getMech().getConfig().set("title-feature", true);
+            Alert.getMech().saveConfig();
+            p.sendMessage(ChatColor.GREEN + "▶ " + ChatColor.GRAY + "Set the title feature to" + ChatColor.GREEN + " TRUE");
+            e.setCancelled(true);
+        } else if (e.getCurrentItem().getType() == Material.BARRIER && Alert.getMech().getConfig().getBoolean("actionbar-feature")) {
+            Alert.getMech().getConfig().set("actionbar-feature", false);
+            Alert.getMech().saveConfig();
+            p.sendMessage(ChatColor.RED + "▶ " + ChatColor.GRAY + "Set the actionbar feature to" + ChatColor.RED + " FALSE");
+            e.setCancelled(true);
+        } else if (!Alert.getMech().getConfig().getBoolean("actionbar-feature")) {
+            Alert.getMech().getConfig().set("actionbar-feature", true);
+            Alert.getMech().saveConfig();
+            p.sendMessage(ChatColor.GREEN + "▶ " + ChatColor.GRAY + "Set the actionbar feature to" + ChatColor.GREEN + " TRUE");
+            e.setCancelled(true);
+        }
+    }
+}
