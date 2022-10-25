@@ -1,0 +1,7 @@
+name: Smart Alert
+version: 0.6
+author: MinePluginX
+main: mpx.sem.alert.Alert
+commands:
+   alert:
+      description: Make a server-wide alert!
