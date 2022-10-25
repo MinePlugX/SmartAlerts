@@ -1,0 +1,76 @@
+package nl.mpx.alert;
+
+public class Configuration {
+    String string1 = Alert.getMech().getConfig().getString("prefix");
+    String string21;
+    String message1;
+    String string2;
+    String string22;
+    String message2;
+    String string3;
+    String string23;
+    String message3;
+    String string4;
+    String string24;
+    String message4;
+    String string5;
+    String string25;
+    String message5;
+    String string6;
+    String string26;
+    String message6;
+    String string7;
+    String string27;
+    String message7;
+
+    public Configuration() {
+        this.string21 = this.string1.replaceAll("&", "§");
+        this.message1 = this.string21.replaceAll("§§", "&");
+        this.string2 = Alert.getMech().getConfig().getString("incorrect-usage");
+        this.string22 = this.string2.replaceAll("&", "§");
+        this.message2 = this.string22.replaceAll("§§", "&");
+        this.string3 = Alert.getMech().getConfig().getString("no-permission");
+        this.string23 = this.string3.replaceAll("&", "§");
+        this.message3 = this.string23.replaceAll("§§", "&");
+        this.string4 = Alert.getMech().getConfig().getString("title-prefix");
+        this.string24 = this.string4.replaceAll("&", "§");
+        this.message4 = this.string24.replaceAll("§§", "&");
+        this.string5 = Alert.getMech().getConfig().getString("subtitle-colour");
+        this.string25 = this.string5.replaceAll("&", "§");
+        this.message5 = this.string25.replaceAll("§§", "&");
+        this.string6 = Alert.getMech().getConfig().getString("chat-message-colour");
+        this.string26 = this.string6.replaceAll("&", "§");
+        this.message6 = this.string26.replaceAll("§§", "&");
+        this.string7 = Alert.getMech().getConfig().getString("open-adminmenu-message");
+        this.string27 = this.string7.replaceAll("&", "§");
+        this.message7 = this.string27.replaceAll("§§", "&");
+    }
+
+    public String getPrefix() {
+        return this.string1;
+    }
+
+    public String getError() {
+        return this.string2;
+    }
+
+    public String getNoPerm() {
+        return this.string3;
+    }
+
+    public String getTitlePrefix() {
+        return this.string4;
+    }
+
+    public String getSubTitleColour() {
+        return this.string5;
+    }
+
+    public String getChatMessageColour() {
+        return this.string6;
+    }
+
+    public String getOpenAdminMenuMessage() {
+        return this.string7;
+    }
+}
