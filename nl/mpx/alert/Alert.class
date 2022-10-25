@@ -1,0 +1,36 @@
+package nl.sem.alert;
+
+import java.util.logging.Logger;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class Alert extends JavaPlugin {
+    private static Alert mech = null;
+    final Logger logger = Logger.getLogger("Minecraft");
+
+    public Alert() {
+    }
+
+    public void onEnable() {
+        mech = this;
+        this.logger.info("> Enabled Alert v1.0");
+        this.saveDefaultConfig();
+        this.saveConfig();
+        this.registerEvents();
+        this.getCommand("alert").setExecutor(new AlertCommand());
+        this.logger.info("> Registered Commands / Events!");
+    }
+
+    public void onDisable() {
+        this.logger.info("> Disabled Alert v1.0");
+    }
+
+    public static Alert getMech() {
+        return mech != null ? mech : (mech = new Alert());
+    }
+
+    public void registerEvents() {
+        Bukkit.getServer().getPluginManager().registerEvents(new AlertCommand(), this);
+        Bukkit.getServer().getPluginManager().registerEvents(new AdminGUI(), this);
+    }
+}
