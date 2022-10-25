@@ -1,4 +1,4 @@
-package nl.sem.alert;
+package nl.mpx.alert;
 
 import java.util.logging.Logger;
 import org.bukkit.Bukkit;
